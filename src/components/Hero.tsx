@@ -22,26 +22,31 @@ function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
+      {/* Background Effects */}
       <div className="absolute inset-0 stars"></div>
       <div className="absolute inset-0 twinkling"></div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col items-center text-center">
           
-          {/* Profile Picture */}
+          {/* Profile Picture Section */}
           <div className={`profile-container mb-8 transition-all duration-1000 ${
               showProfile ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
             }`}>
             <div className="relative">
+              {/* Premium Glow Effect */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin-slow blur-xl opacity-75"></div>
+              
+              {/* The Image - Fixed Path */}
               <img
-                src="pa.jpg"
+                src="/pa.jpg" 
                 alt="Senesh Pahan"
                 className="relative w-48 h-48 rounded-full object-cover border-4 border-white shadow-2xl profile-image"
               />
             </div>
           </div>
 
+          {/* Typing Animation Title */}
           <div className="mb-6">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
               <span className="typing-text">{text}</span>
@@ -50,40 +55,42 @@ function Hero() {
             <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full animate-pulse"></div>
           </div>
 
+          {/* Intro Text */}
           <div className="max-w-2xl fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <p className="text-xl md:text-2xl text-blue-400 font-semibold mb-4">
+            <p className="text-xl md:text-2xl text-blue-400 font-semibold mb-4 uppercase tracking-widest">
               Graphic Designer & Web Designer
             </p>
-            <p className="text-gray-300 leading-relaxed mb-8">
+            <p className="text-gray-300 leading-relaxed mb-8 text-lg">
               Hello! I'm a passionate developer and designer, bringing ideas to life through code and creativity. 
               I have a keen eye for detail and a love for creating intuitive and beautiful digital experiences.
             </p>
           </div>
 
-          {/* Updated Social Links with YT & FB */}
+          {/* Social Links Section */}
           <div className="flex flex-wrap justify-center gap-6 fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <a href="https://github.com/yourprofile" target="_blank" className="social-icon hover:text-white transition-colors">
-              <Github size={24} />
+            <a href="https://github.com/pahanr4453" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-white transition-all transform hover:scale-110">
+              <Github size={28} />
             </a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" className="social-icon hover:text-blue-500 transition-colors">
-              <Linkedin size={24} />
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-500 transition-all transform hover:scale-110">
+              <Linkedin size={28} />
             </a>
-            <a href="https://www.facebook.com/yourprofile" target="_blank" className="social-icon hover:text-blue-600 transition-colors">
-              <Facebook size={24} />
+            <a href="https://www.facebook.com/yourprofile" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-600 transition-all transform hover:scale-110">
+              <Facebook size={28} />
             </a>
-            <a href="https://youtube.com/@yourchannel" target="_blank" className="social-icon hover:text-red-500 transition-colors">
-              <Youtube size={24} />
+            <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-red-500 transition-all transform hover:scale-110">
+              <Youtube size={28} />
             </a>
-            <a href="https://www.instagram.com/pahan_sewmina/" target="_blank" className="social-icon hover:text-pink-500 transition-colors">
-              <Instagram size={24} />
+            <a href="https://www.instagram.com/pahan_sewmina/" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-pink-500 transition-all transform hover:scale-110">
+              <Instagram size={28} />
             </a>
-            <a href="mailto:shivajayasakara@gmail.com" className="social-icon hover:text-orange-500 transition-colors">
-              <Mail size={24} />
+            <a href="mailto:seneshpahan@gmail.com" className="social-icon hover:text-orange-500 transition-all transform hover:scale-110">
+              <Mail size={28} />
             </a>
           </div>
         </div>
       </div>
 
+      {/* Mouse Scroll Indicator */}
       <div className="scroll-indicator">
         <div className="mouse"><div className="wheel"></div></div>
       </div>
