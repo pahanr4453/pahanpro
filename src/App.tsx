@@ -37,12 +37,12 @@ const App: React.FC = () => {
 
   if (loading) return <LoadingScreen />;
 
-  return (
+ return (
     <HelmetProvider>
       <div className="min-h-screen bg-[#020617] text-white scroll-smooth selection:bg-blue-500/30 font-sans">
-        
-        <Helmet>
+         <Helmet>
           <title>Senesh Pahan | Graphic & Web Designer</title>
+          <link rel="icon" href="/favicon.ico" />
         </Helmet>
 
         {/* --- SMART RESPONSIVE NAVBAR --- */}
