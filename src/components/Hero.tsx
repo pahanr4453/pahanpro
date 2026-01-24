@@ -39,7 +39,7 @@ function Hero() {
               
               {/* The Image - Fixed Path */}
               <img
-                src="/pa.jpg" 
+                src="public/pa.jpg" 
                 alt="Senesh Pahan"
                 className="relative w-48 h-48 rounded-full object-cover border-4 border-white shadow-2xl profile-image"
               />
