@@ -19,7 +19,7 @@ const Journey = () => {
     },
     {
       title: "Professional Skills Mastery",
-      institution: "Sun Vision English Academy & SNIT",
+      institution: "British council,Sun Vision English Academy & SNIT",
       duration: "Certified",
       description: "Mastering English communication, professional linguistics, and advanced mathematical shortcuts for technical excellence.",
       icon: <Award className="text-pink-400" />
