@@ -7,11 +7,11 @@ function Footer() {
   };
 
   const socialLinks = [
-    { icon: <Github size={20} />, link: "#", color: "hover:text-white" },
-    { icon: <Linkedin size={20} />, link: "#", color: "hover:text-blue-500" },
+    { icon: <Github size={20} />, link: "https://github.com/pahanr4453", color: "hover:text-white" },
+    { icon: <Linkedin size={20} />, link: "https://linkedin.com/in/pahan_sewmina", color: "hover:text-blue-500" },
     { icon: <Youtube size={20} />, link: "#", color: "hover:text-red-500" },
-    { icon: <Facebook size={20} />, link: "#", color: "hover:text-blue-600" },
-    { icon: <Instagram size={20} />, link: "#", color: "hover:text-pink-500" },
+    { icon: <Facebook size={20} />, link: "https://www.facebook.com/pahansewmina", color: "hover:text-blue-600" },
+    { icon: <Instagram size={20} />, link: "#https://www.instagram.com/pahan_sewmina", color: "hover:text-pink-500" },
   ];
 
   return (

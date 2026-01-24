@@ -74,7 +74,7 @@ function Hero() {
             <a href="https://linkedin.com/in/pahan_sewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-500 transition-all transform hover:scale-110">
               <Linkedin size={28} />
             </a>
-            <a href="https://www.facebook.com/Pahan_Sewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-600 transition-all transform hover:scale-110">
+            <a href="https://www.facebook.com/pahansewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-600 transition-all transform hover:scale-110">
               <Facebook size={28} />
             </a>
             <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-red-500 transition-all transform hover:scale-110">
