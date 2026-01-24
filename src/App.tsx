@@ -42,7 +42,7 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-[#020617] text-white scroll-smooth selection:bg-blue-500/30 font-sans">
          <Helmet>
           <title>Senesh Pahan | Graphic & Web Designer</title>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/mysp.png" />
         </Helmet>
 
         {/* --- SMART RESPONSIVE NAVBAR --- */}
