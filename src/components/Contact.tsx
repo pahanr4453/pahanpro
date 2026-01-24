@@ -30,6 +30,34 @@ export default function Contact() {
     });
   };
 
+  const socialLinks = [
+    { 
+      icon: <Github size={20} />, 
+      color: "hover:bg-white/10", 
+      href: "https://github.com/pahanr4453" 
+    },
+    { 
+      icon: <Linkedin size={20} />, 
+      color: "hover:bg-blue-600", 
+      href: "https://linkedin.com/in/pahansewmina" 
+    },
+    { 
+      icon: <Facebook size={20} />, 
+      color: "hover:bg-blue-700", 
+      href: "https://www.facebook.com/pahansewmina" 
+    },
+    { 
+      icon: <Youtube size={20} />, 
+      color: "hover:bg-red-600", 
+      href: "https://youtube.com/@pahansewmina" 
+    },
+    { 
+      icon: <Instagram size={20} />, 
+      color: "hover:bg-pink-600", 
+      href: "https://instagram.com/pahan_sewmina" 
+    }
+  ];
+
   return (
     <section id="contact" className="py-24 px-6 bg-[#020617] relative">
       <div className="container mx-auto max-w-6xl">
@@ -51,7 +79,6 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-16">
           
-          {/* Left Side: Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -85,28 +112,25 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Socials */}
+            {/* Social Links - Fixed Style */}
             <div className="flex flex-wrap gap-4 pt-6">
-              {[
-                { icon: <Github />, color: "hover:bg-white/10" },
-                { icon: <Linkedin />, color: "hover:bg-blue-600" },
-                { icon: <Facebook />, color: "hover:bg-blue-700" },
-                { icon: <Youtube />, color: "hover:bg-red-600" },
-                { icon: <Instagram />, color: "hover:bg-pink-600" }
-              ].map((item, i) => (
-                <motion.a 
-                  key={i}
-                  whileHover={{ y: -5 }}
-                  href="#"
-                  className={`p-4 rounded-xl bg-white/5 border border-white/10 text-white transition-all duration-300 ${item.color}`}
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-4 rounded-xl bg-white/5 border border-white/10 text-white transition-all duration-300 ${social.color}`}
                 >
-                  {item.icon}
+                  {social.icon}
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Right Side: Working Contact Form */}
+          {/* Right Side: Form */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}

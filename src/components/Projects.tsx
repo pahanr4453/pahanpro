@@ -4,114 +4,123 @@ import { ExternalLink, Github, Landmark, ShoppingBag, Palmtree, Bot, Search } fr
 const myProjects = [
   {
     title: "FINANCIAL ANALYTICS HUB",
-    description: "Secure digital banking platform for real-time transaction tracking and high-precision financial reporting.",
-    tech: ["PHP", "MySQL", "Chart.js"],
-    link: "#",
+    description: "SECURE DIGITAL BANKING PLATFORM FOR REAL-TIME TRANSACTION TRACKING AND HIGH-PRECISION FINANCIAL REPORTING.",
+    tech: ["PHP", "MYSQL", "CHART.JS"],
+    link: "denipitiyawest.vercel.app",
     github: "#",
-    icon: <Landmark size={32} className="text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.8)]" />
+    color: "from-emerald-500/20",
+    icon: <Landmark size={24} className="text-emerald-400" />
   },
   {
     title: "SMART E-COMMERCE ENGINE",
-    description: "High-performance marketplace featuring dynamic product management and secure checkout systems.",
-    tech: ["React", "Node.js", "Tailwind"],
+    description: "HIGH-PERFORMANCE MARKETPLACE FEATURING DYNAMIC PRODUCT MANAGEMENT AND SECURE CHECKOUT SYSTEMS.",
+    tech: ["PHP", "CSS", "HTML5","MYSQL"],
     link: "#",
     github: "#",
-    icon: <ShoppingBag size={32} className="text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.8)]" />
+    color: "from-blue-500/20",
+    icon: <ShoppingBag size={24} className="text-blue-400" />
   },
   {
     title: "VISIT SRI LANKA PLATFORM",
-    description: "Immersive travel guide showcasing island destinations with interactive maps and local booking.",
-    tech: ["JS", "CSS3", "HTML5"],
-    link: "#",
+    description: "IMMERSIVE TRAVEL GUIDE SHOWCASING ISLAND DESTINATIONS WITH INTERACTIVE MAPS AND LOCAL BOOKING.",
+    tech: ["REACT", "NODE.JS", "TAILWIND"],
+    link: "discover-sri-lanka-alpha.vercel.app",
     github: "#",
-    icon: <Palmtree size={32} className="text-amber-400 drop-shadow-[0_0_15px_rgba(251,191,36,0.8)]" />
+    color: "from-amber-500/20",
+    icon: <Palmtree size={24} className="text-amber-400" />
   },
   {
     title: "PYTHON AUTOMATION BOT",
-    description: "Custom Python script for automating repetitive web tasks and social media interactions efficiently.",
-    tech: ["Python", "Selenium", "Logic"],
+    description: "CUSTOM PYTHON SCRIPT FOR AUTOMATING REPETITIVE WEB TASKS AND SOCIAL MEDIA INTERACTIONS EFFICIENTLY.",
+    tech: ["PYTHON", "SELENIUM", "LOGIC"],
     link: "#",
     github: "#",
-    icon: <Bot size={32} className="text-purple-400 drop-shadow-[0_0_15px_rgba(192,132,252,0.8)]" />
+    color: "from-purple-500/20",
+    icon: <Bot size={24} className="text-purple-400" />
   },
   {
     title: "DATA SCRAPING ENGINE",
-    description: "Advanced Python-based tool for extracting large-scale data from websites and converting it into structured insights.",
-    tech: ["Python", "BeautifulSoup", "CSV"],
+    description: "ADVANCED PYTHON-BASED TOOL FOR EXTRACTING LARGE-SCALE DATA FROM WEBSITES AND STRUCTURED INSIGHTS.",
+    tech: ["PYTHON", "BEAUTIFULSOUP", "CSV"],
     link: "#",
     github: "#",
-    icon: <Search size={32} className="text-red-400 drop-shadow-[0_0_15px_rgba(248,113,113,0.8)]" />
+    color: "from-red-500/20",
+    icon: <Search size={24} className="text-red-400" />
   }
 ];
 
 export default function Projects() {
   return (
-    <section id="portfolio" className="py-24 px-6 bg-[#020617]">
-      <div className="container mx-auto max-w-6xl">
+    <section id="portfolio" className="py-24 px-6 bg-[#020617] relative overflow-hidden">
+      
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full -z-10" />
+
+      <div className="container mx-auto max-w-7xl">
         
-        {/* Header Animation */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-left mb-16 border-l-4 border-blue-600 pl-6"
-        >
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
-            FEATURED <span className="text-blue-500">PROJECTS</span>
-          </h2>
-          <p className="text-gray-500 mt-2 text-[11px] uppercase tracking-[0.5em] font-bold">
-            Building Digital Excellence
-          </p>
-        </motion.div>
+        {/* --- LASSANA KARAPU HEADER --- */}
+        <div className="flex flex-col mb-16 border-l-2 border-blue-600/50 pl-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Title size eka 'text-3xl md:text-5xl' walata adu kala, 'font-black' wenuwata 'font-bold' damma */}
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white uppercase leading-none">
+              FEATURED <span className="text-blue-500 italic">PROJECTS</span>
+            </h2>
+            {/* Subtext eka thawa minimal kala */}
+            <p className="text-gray-500 mt-3 text-[9px] font-bold uppercase tracking-[0.5em] opacity-70">
+              Building Digital Excellence
+            </p>
+          </motion.div>
+        </div>
 
         {/* Project Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {myProjects.map((project, index) => (
             <motion.div 
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }} // Cards pop up one by one
-              whileHover={{ y: -10 }} // Slight lift on hover
-              className="group relative p-8 rounded-3xl bg-slate-900/40 border border-white/5 backdrop-blur-xl hover:border-blue-500/40 hover:bg-slate-900/60 transition-all duration-500"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
+              className="group relative"
             >
-              
-              {/* Icon Container with subtle animation */}
-              <motion.div 
-                whileHover={{ rotate: 10, scale: 1.1 }}
-                className="mb-8 p-5 w-fit rounded-2xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-all shadow-inner"
-              >
-                {project.icon}
-              </motion.div>
+              <div className="relative h-full p-10 rounded-[2.5rem] bg-slate-900/40 border border-white/5 backdrop-blur-xl group-hover:border-blue-500/50 group-hover:bg-slate-900/60 transition-all duration-500 flex flex-col">
+                
+                <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${project.color} blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
 
-              {/* Text Content */}
-              <h3 className="text-xl font-black uppercase tracking-wider text-white mb-4 group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
-              
-              <p className="text-gray-400 text-sm leading-relaxed mb-8 font-medium">
-                {project.description}
-              </p>
+                <div className="mb-10 p-5 w-fit rounded-2xl bg-white/5 border border-white/10 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all">
+                  {project.icon}
+                </div>
 
-              {/* Tech Badges */}
-              <div className="flex flex-wrap gap-2 mb-10">
-                {project.tech.map((t, i) => (
-                  <span key={i} className="text-[9px] font-bold px-3 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-widest">
-                    {t}
-                  </span>
-                ))}
-              </div>
+                <h3 className="text-2xl font-black text-white mb-4 group-hover:text-blue-400 transition-colors tracking-tight uppercase">
+                  {project.title}
+                </h3>
+                
+                <p className="text-gray-400 text-[11px] leading-relaxed mb-8 font-bold uppercase tracking-wider">
+                  {project.description}
+                </p>
 
-              {/* Action Buttons */}
-              <div className="flex items-center gap-4">
-                <a href={project.github} className="p-3 rounded-lg bg-white/5 border border-white/10 text-gray-500 hover:text-white hover:bg-white/20 transition-all">
-                  <Github size={18} />
-                </a>
-                <a href={project.link} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg bg-blue-600 text-white font-bold text-[11px] uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/40">
-                  EXPLORE <ExternalLink size={14} />
-                </a>
+                <div className="mt-auto">
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {project.tech.map((t, i) => (
+                      <span key={i} className="text-[9px] font-black px-3 py-1.5 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-widest">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <a href={project.github} className="p-4 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all">
+                      <Github size={20} />
+                    </a>
+                    <a href={project.link} className="flex-1 flex items-center justify-center gap-3 py-4 rounded-xl bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/20">
+                      EXPLORE <ExternalLink size={16} />
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}

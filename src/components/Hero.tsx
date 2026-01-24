@@ -71,10 +71,10 @@ function Hero() {
             <a href="https://github.com/pahanr4453" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-white transition-all transform hover:scale-110">
               <Github size={28} />
             </a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-500 transition-all transform hover:scale-110">
+            <a href="https://linkedin.com/in/pahan_sewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-500 transition-all transform hover:scale-110">
               <Linkedin size={28} />
             </a>
-            <a href="https://www.facebook.com/yourprofile" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-600 transition-all transform hover:scale-110">
+            <a href="https://www.facebook.com/Pahan_Sewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-600 transition-all transform hover:scale-110">
               <Facebook size={28} />
             </a>
             <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-red-500 transition-all transform hover:scale-110">
@@ -83,7 +83,7 @@ function Hero() {
             <a href="https://www.instagram.com/pahan_sewmina/" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-pink-500 transition-all transform hover:scale-110">
               <Instagram size={28} />
             </a>
-            <a href="mailto:seneshpahan@gmail.com" className="social-icon hover:text-orange-500 transition-all transform hover:scale-110">
+            <a href="mailto:shivajayasakara@gmail.com" className="social-icon hover:text-orange-500 transition-all transform hover:scale-110">
               <Mail size={28} />
             </a>
           </div>
