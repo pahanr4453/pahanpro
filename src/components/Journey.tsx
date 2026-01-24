@@ -1,4 +1,4 @@
-import { GraduationCap, Trophy, Award, BookOpen, Star, ArrowRight, Sparkles, Palette, Languages } from 'lucide-react';
+import { GraduationCap, Trophy, Award, BookOpen, Star, ArrowRight, Palette } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Journey = () => {
@@ -19,9 +19,9 @@ const Journey = () => {
     },
     {
       title: "Professional Skills Mastery",
-      institution: "British council,Sun Vision English Academy & SNIT",
+      institution: "British Council, Sun Vision English Academy & SNIT",
       duration: "Certified",
-      description: "Mastering English communication, professional linguistics, and advanced mathematical shortcuts for technical excellence.",
+      description: "Mastering English communication, professional linguistics, and advanced mathematical shortcuts.",
       icon: <Award className="text-pink-400" />
     },
     {
@@ -33,10 +33,19 @@ const Journey = () => {
     }
   ];
 
+  const sports = [
+    { name: "Cricket", icon: "🏏", color: "from-blue-500/20" },
+    { name: "Volleyball", icon: "🏐", color: "from-orange-500/20" },
+    { name: "Karate Master", icon: "🥋", color: "from-red-500/20" },
+    { name: "Footballer", icon: "⚽", color: "from-sky-500/20" },
+    { name: "Throwball", icon: "🏐", color: "from-green-500/20" },
+    { name: "Chess Master", icon: "♟️", color: "from-purple-500/20" },
+  ];
+
   return (
     <section id="journey" className="py-32 bg-[#020617] relative overflow-hidden">
       
-      {/* --- DYNAMIC FLOATING BUBBLES --- */}
+      {/* Dynamic Background Decor */}
       <motion.div 
         animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -78,7 +87,7 @@ const Journey = () => {
 
         <div className="grid lg:grid-cols-2 gap-20">
           
-          {/* Left Side: Education & Skills Timeline */}
+          {/* Left Side: Education Timeline */}
           <div className="space-y-12">
             <h3 className="text-2xl font-black text-white flex items-center gap-4 uppercase tracking-widest">
               <span className="p-3 bg-blue-600/20 rounded-2xl border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
@@ -88,20 +97,16 @@ const Journey = () => {
               <div className="h-[1px] flex-grow bg-gradient-to-r from-blue-500/50 to-transparent" />
             </h3>
             
-            <div className="space-y-6 relative">
-              <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500/50 via-slate-800 to-transparent" />
-              
+            <div className="space-y-6 relative ml-5 border-l-2 border-slate-800/50 pl-10">
               {education.map((item, index) => (
                 <motion.div 
                   key={index}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.2 }}
-                  className="group relative pl-14 pb-10 last:pb-0"
+                  className="group relative pb-10 last:pb-0"
                 >
-                  <div className="absolute left-0 top-1 w-10 h-10 bg-[#020617] flex items-center justify-center z-10">
-                    <div className="w-4 h-4 bg-slate-800 rounded-full border-2 border-slate-700 group-hover:bg-blue-500 group-hover:border-blue-400 group-hover:shadow-[0_0_20px_rgba(59,130,246,1)] transition-all duration-500" />
-                  </div>
+                  <div className="absolute -left-[51px] top-1 w-5 h-5 bg-[#020617] border-2 border-slate-700 rounded-full group-hover:border-blue-500 group-hover:bg-blue-500 transition-all duration-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
                   
                   <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm group-hover:bg-white/[0.05] group-hover:border-blue-500/30 transition-all duration-500">
                     <span className="text-blue-400 text-[10px] font-black tracking-widest uppercase">{item.duration}</span>
@@ -114,7 +119,7 @@ const Journey = () => {
             </div>
           </div>
 
-          {/* Right Side: Sports & Extra */}
+          {/* Right Side: Sports Excellence */}
           <div className="space-y-12">
              <h3 className="text-2xl font-black text-white flex items-center gap-4 uppercase tracking-widest">
               <span className="p-3 bg-yellow-500/20 rounded-2xl border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
@@ -124,32 +129,26 @@ const Journey = () => {
               <div className="h-[1px] flex-grow bg-gradient-to-r from-yellow-500/50 to-transparent" />
             </h3>
 
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { name: "Cricket & Volley", icon: "🏏", color: "from-blue-500/20" },
-                { name: "Karate Master", icon: "🥋", color: "from-red-500/20" },
-                { name: "Footballer", icon: "⚽", color: "from-sky-500/20" },
-                { name: "Throwball", icon: "🏐", color: "from-green-500/20" },
-                { name: "Chess Master", icon: "♟️", color: "from-purple-500/20" },
-              ].map((sport, i) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {sports.map((sport, i) => (
                 <motion.div 
                   key={i}
                   whileHover={{ y: -8, scale: 1.05 }}
                   className={`bg-gradient-to-br ${sport.color} to-transparent p-6 rounded-[2rem] border border-white/5 backdrop-blur-md flex flex-col items-center text-center group`}
                 >
-                  <span className="text-5xl mb-4 group-hover:rotate-12 transition-transform duration-500">{sport.icon}</span>
+                  <span className="text-4xl mb-4 group-hover:rotate-12 transition-transform duration-500">{sport.icon}</span>
                   <h4 className="font-bold text-white text-[10px] uppercase tracking-widest">{sport.name}</h4>
                   <div className="w-8 h-0.5 bg-white/10 mt-3 group-hover:w-16 group-hover:bg-blue-500 transition-all duration-500" />
                 </motion.div>
               ))}
             </div>
 
-            {/* Ultra Premium Merit Card */}
+            {/* National Merit Card */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               whileHover={{ y: -5 }}
-              className="relative p-10 rounded-[3rem] overflow-hidden bg-slate-900/40 border border-white/10 group shadow-2xl"
+              className="relative p-10 rounded-[3rem] overflow-hidden bg-slate-900/40 border border-white/10 group shadow-2xl mt-10"
             >
               <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-yellow-500/10 blur-3xl group-hover:bg-yellow-500/30 transition-all duration-700" />
               
