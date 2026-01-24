@@ -6,7 +6,7 @@ const myProjects = [
     title: "FINANCIAL ANALYTICS HUB",
     description: "SECURE DIGITAL BANKING PLATFORM FOR REAL-TIME TRANSACTION TRACKING AND HIGH-PRECISION FINANCIAL REPORTING.",
     tech: ["PHP", "MYSQL", "CHART.JS"],
-    link: "denipitiyawest.vercel.app",
+    link: "https://denipitiyawest.vercel.app/",
     github: "#",
     color: "from-emerald-500/20",
     icon: <Landmark size={24} className="text-emerald-400" />
@@ -24,7 +24,7 @@ const myProjects = [
     title: "VISIT SRI LANKA PLATFORM",
     description: "IMMERSIVE TRAVEL GUIDE SHOWCASING ISLAND DESTINATIONS WITH INTERACTIVE MAPS AND LOCAL BOOKING.",
     tech: ["REACT", "NODE.JS", "TAILWIND"],
-    link: "discover-sri-lanka-alpha.vercel.app",
+    link: "https://discover-sri-lanka-alpha.vercel.app/",
     github: "#",
     color: "from-amber-500/20",
     icon: <Palmtree size={24} className="text-amber-400" />
