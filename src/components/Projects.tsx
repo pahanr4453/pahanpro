@@ -6,7 +6,7 @@ const myProjects = [
     title: "FINANCIAL ANALYTICS HUB",
     description: "SECURE DIGITAL BANKING PLATFORM FOR REAL-TIME TRANSACTION TRACKING AND HIGH-PRECISION FINANCIAL REPORTING.",
     tech: ["PHP", "MYSQL", "CHART.JS"],
-    link: "https://denipitiyawest.vercel.app/",
+    link: "https://www.denipitiyawestsanasa.it.com/",
     github: "#",
     color: "from-emerald-500/20",
     icon: <Landmark size={24} className="text-emerald-400" />
