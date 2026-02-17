@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { 
   Globe, Terminal, Palette, Cloud, 
   Layout, FileCode, Monitor, Database, Code2, 
@@ -19,6 +20,21 @@ interface SkillGroup {
 }
 
 function Skills() {
+  // --- MOUSE INTERACTION LOGIC ---
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    // Mouse eka screen eke mada idan calculate karanawa background shapes paddo
+    mouseX.set((clientX - innerWidth / 2) / 30);
+    mouseY.set((clientY - innerHeight / 2) / 30);
+  };
+
   const skillGroups: SkillGroup[] = [
     {
       category: 'Web Development',
@@ -64,10 +80,34 @@ function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-24 px-4 bg-transparent relative overflow-hidden">
-      <div className="container mx-auto max-w-6xl">
+    <section 
+      id="skills" 
+      onMouseMove={handleMouseMove}
+      className="py-24 px-4 bg-transparent relative overflow-hidden"
+    >
+      
+      {/* --- LIVE BACKGROUND ELEMENTS --- */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Parallax Floating Particles */}
+        <motion.div 
+          style={{ x: springX, y: springY }}
+          className="absolute inset-0"
+        >
+          <div className="absolute top-[10%] left-[10%] w-2 h-2 bg-blue-500 rounded-full blur-[2px] animate-pulse"></div>
+          <div className="absolute top-[40%] right-[15%] w-3 h-3 bg-cyan-400 rounded-full blur-[4px] animate-bounce-slow"></div>
+          <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-purple-500 rounded-full blur-[2px] animate-pulse"></div>
+          <div className="absolute top-[60%] left-[5%] opacity-10"><Code2 size={60} className="text-blue-500" /></div>
+          <div className="absolute bottom-[10%] right-[10%] opacity-10"><Terminal size={50} className="text-cyan-500" /></div>
+        </motion.div>
+
+        {/* Static Background Glows */}
+        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-blue-900/10 blur-[150px] rounded-full"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-900/10 blur-[150px] rounded-full"></div>
+      </div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         
-        {/* Header Animation */}
+        {/* Header Animation (Original) */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,6 +121,7 @@ function Skills() {
           <div className="h-1 w-20 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </motion.div>
 
+        {/* Cards Grid (Original Layout & Animations) */}
         <div className="grid md:grid-cols-2 gap-12">
           {skillGroups.map((group, idx) => (
             <motion.div 

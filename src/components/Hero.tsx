@@ -1,13 +1,22 @@
-import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Instagram, Youtube, Facebook } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { Github, Linkedin, Mail, Instagram, Facebook, Code2, Monitor, Layout, Globe, Cpu, Terminal, Sparkles } from 'lucide-react';
 
-function Hero() {
-  const [text, setText] = useState('');
-  const fullText = "I'm Senesh Pahan";
-  const [showProfile, setShowProfile] = useState(false);
+const Hero: React.FC = () => {
+  const [text, setText] = useState<string>('');
+  const fullText: string = "Senesh Pahan";
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Mouse positions - Framer motion values for extra smoothness
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth springs for the parallax effect
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
   useEffect(() => {
-    setShowProfile(true);
+    setIsVisible(true);
     let currentIndex = 0;
     const interval = setInterval(() => {
       if (currentIndex <= fullText.length) {
@@ -16,86 +25,131 @@ function Hero() {
       } else {
         clearInterval(interval);
       }
-    }, 150);
+    }, 120);
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 stars"></div>
-      <div className="absolute inset-0 twinkling"></div>
+  // Mouse move handler
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    // Calculate offset from center
+    mouseX.set((clientX - innerWidth / 2) / 25);
+    mouseY.set((clientY - innerHeight / 2) / 25);
+  };
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="flex flex-col items-center text-center">
+  return (
+    <section 
+      onMouseMove={handleMouseMove}
+      className="min-h-screen flex items-center justify-center px-4 md:px-10 relative overflow-hidden bg-[#010413] selection:bg-blue-500/30"
+    >
+      
+      {/* --- ULTRA LIVE BACKGROUND --- */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Animated Glows that follow mouse smoothly */}
+        <motion.div 
+          style={{ x: springX, y: springY }}
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full"
+        />
+        
+        {/* Parallax Floating Icons */}
+        <motion.div 
+          style={{ x: springX, y: springY }}
+          className="absolute inset-0"
+        >
+          <div className="absolute top-[15%] left-[12%] animate-pulse"><Code2 size={42} className="text-blue-500/30" /></div>
+          <div className="absolute bottom-[25%] left-[8%] animate-bounce-slow"><Terminal size={38} className="text-cyan-400/20" /></div>
+          <div className="absolute top-[45%] right-[12%] animate-spin-slow"><Cpu size={50} className="text-blue-400/20" /></div>
+          <div className="absolute bottom-[15%] right-[18%] animate-float-medium"><Layout size={35} className="text-blue-300/20" /></div>
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           
-          {/* Profile Picture Section */}
-          <div className={`profile-container mb-8 transition-all duration-1000 ${
-              showProfile ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-            }`}>
-            <div className="relative">
-              {/* Premium Glow Effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin-slow blur-xl opacity-75"></div>
+          {/* LEFT: Profile Section */}
+          <motion.div 
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="relative flex-shrink-0"
+          >
+            <div className="absolute inset-[-20px] rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 blur-[100px] opacity-20 animate-pulse"></div>
+            
+            <div className="relative group">
+              {/* Rotating Dashed Border */}
+              <div className="absolute inset-[-12px] rounded-full border-2 border-dashed border-blue-500/20 animate-spin-slow"></div>
               
-              {/* The Image - Fixed Path */}
-              <img
-                src="/pa.jpg" 
-                alt="Senesh Pahan"
-                className="relative w-48 h-48 rounded-full object-cover border-4 border-white shadow-2xl profile-image"
-              />
+              <div className="relative p-2 rounded-full bg-gradient-to-b from-blue-600/20 to-transparent backdrop-blur-md">
+                <img
+                  src="/pa.jpg" 
+                  alt="Senesh Pahan"
+                  className="w-60 h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-2 border-white/10 shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <Sparkles className="absolute -top-2 -right-2 text-cyan-400 animate-pulse" size={48} />
+            </div>
+          </motion.div>
+
+          {/* RIGHT: Content Section */}
+          <div className="flex-1 text-center lg:text-left">
+            <motion.h2 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-blue-400 text-sm md:text-base font-bold tracking-[0.6em] uppercase mb-4"
+            >
+              Graphic & Web Designer
+            </motion.h2>
+            
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-tight mb-6">
+              I'm <br className="hidden lg:block" />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-500">
+                {text}
+              </span>
+              <span className="text-cyan-400 animate-blink">_</span>
+            </h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="max-w-xl text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10 mx-auto lg:mx-0"
+            >
+              Crafting <span className="text-white font-medium italic underline decoration-blue-500/50 underline-offset-8">high-end digital identities</span>. 
+              I specialize in making web interfaces feel alive and professional.
+            </motion.p>
+
+            {/* Social Links */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-5">
+              {[
+                { icon: Github, link: "https://github.com/pahanr4453", label: "Github" },
+                { icon: Linkedin, link: "https://linkedin.com/in/pahan_sewmina", label: "LinkedIn" },
+                { icon: Facebook, link: "https://facebook.com/pahansewmina", label: "Facebook" },
+                { icon: Instagram, link: "https://instagram.com/pahan_sewmina", label: "Instagram" },
+                { icon: Mail, link: "mailto:shivajayasakara@gmail.com", label: "Email" }
+              ].map((item, idx) => (
+                <motion.a 
+                  key={idx}
+                  whileHover={{ y: -8, backgroundColor: "rgba(59, 130, 246, 0.15)", borderColor: "rgba(59, 130, 246, 0.5)" }}
+                  href={item.link} 
+                  target="_blank"
+                  className="p-4 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl text-gray-400 hover:text-white transition-colors duration-300"
+                >
+                  <item.icon size={24} />
+                </motion.a>
+              ))}
             </div>
           </div>
 
-          {/* Typing Animation Title */}
-          <div className="mb-6">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-              <span className="typing-text">{text}</span>
-              <span className="cursor-blink">|</span>
-            </h1>
-            <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full animate-pulse"></div>
-          </div>
-
-          {/* Intro Text */}
-          <div className="max-w-2xl fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <p className="text-xl md:text-2xl text-blue-400 font-semibold mb-4 uppercase tracking-widest">
-              Graphic Designer & Web Designer
-            </p>
-            <p className="text-gray-300 leading-relaxed mb-8 text-lg">
-              Hello! I'm a passionate developer and designer, bringing ideas to life through code and creativity. 
-              I have a keen eye for detail and a love for creating intuitive and beautiful digital experiences.
-            </p>
-          </div>
-
-          {/* Social Links Section */}
-          <div className="flex flex-wrap justify-center gap-6 fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <a href="https://github.com/pahanr4453" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-white transition-all transform hover:scale-110">
-              <Github size={28} />
-            </a>
-            <a href="https://linkedin.com/in/pahan_sewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-500 transition-all transform hover:scale-110">
-              <Linkedin size={28} />
-            </a>
-            <a href="https://www.facebook.com/pahansewmina" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-blue-600 transition-all transform hover:scale-110">
-              <Facebook size={28} />
-            </a>
-            <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-red-500 transition-all transform hover:scale-110">
-              <Youtube size={28} />
-            </a>
-            <a href="https://www.instagram.com/pahan_sewmina/" target="_blank" rel="noopener noreferrer" className="social-icon hover:text-pink-500 transition-all transform hover:scale-110">
-              <Instagram size={28} />
-            </a>
-            <a href="mailto:shivajayasakara@gmail.com" className="social-icon hover:text-orange-500 transition-all transform hover:scale-110">
-              <Mail size={28} />
-            </a>
-          </div>
         </div>
       </div>
 
-      {/* Mouse Scroll Indicator */}
-      <div className="scroll-indicator">
-        <div className="mouse"><div className="wheel"></div></div>
+      {/* Modern Vertical Line */}
+      <div className="absolute bottom-0 right-10 hidden lg:block">
+        <div className="w-[1px] h-32 bg-gradient-to-b from-blue-500 to-transparent opacity-20"></div>
       </div>
     </section>
   );
-}
+};
 
 export default Hero;
