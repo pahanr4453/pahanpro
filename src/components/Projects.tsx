@@ -73,7 +73,7 @@ const saleProjects = [
 
 export default function Projects() {
   const [selectedAsset, setSelectedAsset] = useState<any>(null);
-  const whatsappNumber = "947611151536";
+  const whatsappNumber = "94761151536";
 
   return (
     <div className="bg-[#020617] relative overflow-hidden">
