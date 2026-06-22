@@ -1,4 +1,4 @@
-import { GraduationCap, Trophy, Award, BookOpen, Star, ArrowRight, Palette } from 'lucide-react';
+import { GraduationCap, Trophy, Award, BookOpen, Star, ArrowRight, Palette, Sparkles, Camera } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Journey = () => {
@@ -9,6 +9,14 @@ const Journey = () => {
       duration: "2016 - 2025",
       description: "Nurturing a strong foundation in technology and academics at one of the leading schools in the south.",
       icon: <GraduationCap className="text-blue-400" />
+    },
+    {
+      title: "C Programming Certification",
+      institution: "DP Education IT Campus",
+      duration: "May 2026",
+      description: "Successfully mastered foundational programming architectures, procedural core logics, and algorithms certified by DP Education Perera Foundation.",
+      icon: <Award className="text-cyan-400" />,
+      certificateUrl: "/Certificate.pdf" // Put your Certificate.pdf inside the public folder
     },
     {
       title: "Graphic Design & UI/UX",
@@ -45,17 +53,52 @@ const Journey = () => {
   return (
     <section id="journey" className="py-32 bg-[#020617] relative overflow-hidden">
       
-      {/* Dynamic Background Decor */}
+      {/* Dynamic Background Glowing Blobs */}
       <motion.div 
-        animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        animate={{ 
+          x: [0, 80, -40, 0], 
+          y: [0, 40, 70, 0],
+          scale: [1, 1.15, 0.9, 1],
+          rotate: [0, 180, 360]
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-0 -left-20 w-96 h-96 bg-blue-600/10 blur-[120px] rounded-full -z-10" 
       />
       <motion.div 
-        animate={{ x: [0, -80, 0], y: [0, 100, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        animate={{ 
+          x: [0, -60, 50, 0], 
+          y: [0, 80, -30, 0],
+          scale: [1, 0.85, 1.1, 1],
+          rotate: [360, 180, 0]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full -z-10" 
       />
+
+      {/* Cyber Floating Ambient Particles */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            y: [0, -80, 0],
+            opacity: [0.2, 0.7, 0.2],
+            scale: [1, 1.6, 1],
+          }}
+          transition={{
+            duration: 10 + i * 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 2,
+          }}
+          className={`absolute w-1.5 h-1.5 bg-gradient-to-r ${
+            i % 2 === 0 ? 'from-blue-400 to-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]' : 'from-purple-400 to-pink-400 shadow-[0_0_10px_rgba(232,121,249,0.5)]'
+          } rounded-full -z-10`}
+          style={{
+            top: `${25 + i * 13}%`,
+            left: `${12 + i * 18}%`,
+          }}
+        />
+      ))}
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         
@@ -108,18 +151,38 @@ const Journey = () => {
                 >
                   <div className="absolute -left-[51px] top-1 w-5 h-5 bg-[#020617] border-2 border-slate-700 rounded-full group-hover:border-blue-500 group-hover:bg-blue-500 transition-all duration-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
                   
-                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm group-hover:bg-white/[0.05] group-hover:border-blue-500/30 transition-all duration-500">
-                    <span className="text-blue-400 text-[10px] font-black tracking-widest uppercase">{item.duration}</span>
-                    <h4 className="text-xl font-black text-white mt-1 group-hover:text-blue-400 transition-colors uppercase tracking-tight">{item.title}</h4>
-                    <p className="text-gray-400 text-[10px] font-bold mb-3 uppercase tracking-wide">{item.institution}</p>
-                    <p className="text-gray-500 text-xs leading-relaxed font-medium">{item.description}</p>
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm group-hover:bg-white/[0.05] group-hover:border-blue-500/30 transition-all duration-500 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-blue-400 text-[10px] font-black tracking-widest uppercase">{item.duration}</span>
+                        <span className="text-slate-500 group-hover:text-blue-400 transition-colors">{item.icon}</span>
+                      </div>
+                      <h4 className="text-xl font-black text-white mt-1 group-hover:text-blue-400 transition-colors uppercase tracking-tight">{item.title}</h4>
+                      <p className="text-gray-400 text-[10px] font-bold mb-3 uppercase tracking-wide">{item.institution}</p>
+                      <p className="text-gray-500 text-xs leading-relaxed font-medium">{item.description}</p>
+                    </div>
+
+                    {/* Conditional rendering for Certificate Link */}
+                    {item.certificateUrl && (
+                      <div className="mt-5 pt-3 border-t border-white/5">
+                        <motion.a 
+                          href={item.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ x: 5 }}
+                          className="inline-flex items-center gap-2 text-[10px] font-black text-cyan-400 hover:text-white uppercase tracking-[0.2em] transition-colors cursor-pointer"
+                        >
+                          Open Certificate <ArrowRight size={12} className="text-cyan-400" />
+                        </motion.a>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Right Side: Sports Excellence */}
+          {/* Right Side: Sports Excellence & Creative Passions */}
           <div className="space-y-12">
              <h3 className="text-2xl font-black text-white flex items-center gap-4 uppercase tracking-widest">
               <span className="p-3 bg-yellow-500/20 rounded-2xl border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
@@ -167,6 +230,51 @@ const Journey = () => {
                   >
                     View Achievement <ArrowRight size={14} />
                   </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Premium "Beyond The Code" Card */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ y: -5 }}
+              className="relative p-8 rounded-[3rem] overflow-hidden bg-slate-900/40 border border-white/10 group shadow-2xl mt-6"
+            >
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-purple-500/10 blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
+              
+              <h4 className="text-xl font-black text-white uppercase tracking-widest mb-4 flex items-center gap-3">
+                <span className="p-2 bg-purple-500/10 rounded-xl text-purple-400">
+                  <Sparkles size={18} />
+                </span>
+                Beyond The Code
+              </h4>
+
+              <p className="text-gray-400 text-xs leading-relaxed mb-6 font-medium">
+                When I am not compiling lines of logic, I design experiences through high-end digital aesthetics and cinematic visuals.
+              </p>
+
+              <div className="space-y-4">
+                {/* Visual Aesthetics Sub-Card */}
+                <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex items-center gap-4 hover:bg-white/[0.03] hover:border-purple-500/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">
+                    <Palette size={18} />
+                  </div>
+                  <div>
+                    <h5 className="text-xs font-bold text-white uppercase tracking-wide">UI/UX & Brand Aesthetics</h5>
+                    <p className="text-gray-500 text-[10px] mt-0.5 font-medium">Crafting dark-themed layouts, balanced structures, and pixel-perfect vectors.</p>
+                  </div>
+                </div>
+
+                {/* Cinematography Sub-Card */}
+                <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex items-center gap-4 hover:bg-white/[0.03] hover:border-cyan-500/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 flex-shrink-0">
+                    <Camera size={18} />
+                  </div>
+                  <div>
+                    <h5 className="text-xs font-bold text-white uppercase tracking-wide">Cinematic Motion & Editing</h5>
+                    <p className="text-gray-500 text-[10px] mt-0.5 font-medium">Capturing the raw energy of high-performance car edits and nature-based visual storytelling.</p>
+                  </div>
                 </div>
               </div>
             </motion.div>

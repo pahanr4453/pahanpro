@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { 
   Globe, Terminal, Palette, Cloud, 

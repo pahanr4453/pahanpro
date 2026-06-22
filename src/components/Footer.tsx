@@ -1,19 +1,25 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Instagram, Youtube, Facebook, ArrowUp, Code2, X, ShieldCheck, FileText, Activity, Zap, Monitor } from 'lucide-react';
+import { Github, Linkedin, Instagram, Youtube, Facebook, ArrowUp, Code2, X, ShieldCheck, FileText, Zap, Monitor } from 'lucide-react';
+
+// Modal එක සඳහා Safe Type එකක්
+interface ModalState {
+  type: 'Privacy' | 'Terms';
+  content: string;
+}
 
 function Footer() {
-  const [modalContent, setModalContent] = useState<string | null>(null);
+  const [modal, setModal] = useState<ModalState | null>(null);
   const [os, setOs] = useState<string>("Detecting...");
 
-  // OS Detection Logic - Line by line check
+  // OS Detection Logic - Android vs Linux bug එක මෙතනින් නිවැරදි කර ඇත
   useEffect(() => {
     const userAgent = window.navigator.userAgent;
     let platform = "Unknown OS";
     if (userAgent.indexOf("Win") !== -1) platform = "Windows";
     else if (userAgent.indexOf("Mac") !== -1) platform = "MacOS";
+    else if (userAgent.indexOf("Android") !== -1) platform = "Android"; // Android එක උඩට ගත්තා
     else if (userAgent.indexOf("Linux") !== -1) platform = "Linux";
-    else if (userAgent.indexOf("Android") !== -1) platform = "Android";
     else if (userAgent.indexOf("like Mac") !== -1) platform = "iOS";
     setOs(platform);
   }, []);
@@ -220,24 +226,23 @@ function Footer() {
             </div>
           </div>
 
-          {/* RIGHT SIDE: TERMS, PRIVACY, OS + VERSION LABEL (Layout Unchanged) */}
+          {/* RIGHT SIDE: TERMS, PRIVACY, OS */}
           <div className="flex items-center gap-6 order-3">
             <div className="flex items-center gap-6 text-gray-500 text-[9px] font-black uppercase tracking-[0.2em] bg-white/[0.03] px-6 py-3 rounded-full border border-white/5 backdrop-blur-sm shadow-inner relative overflow-hidden group/bar">
                 
-                {/* VERSION LABEL (Added here to look slick) */}
                 <span className="text-blue-500/60 font-black tracking-[0.3em] border-r border-white/10 pr-4 group-hover/bar:text-blue-400 transition-colors">OS V2.0</span>
                 
-                <span onClick={() => setModalContent("All user data is encrypted and handled with high security.")} className="hover:text-blue-400 cursor-pointer transition-all hover:tracking-widest">Privacy</span>
+                <span onClick={() => setModal({ type: 'Privacy', content: "All user data is encrypted and handled with high security." })} className="hover:text-blue-400 cursor-pointer transition-all hover:tracking-widest">Privacy</span>
                 <span className="text-blue-500/20 font-light select-none">/</span>
-                <span onClick={() => setModalContent("By using this site, you agree to professional engagement terms.")} className="hover:text-blue-400 cursor-pointer transition-all hover:tracking-widest">Terms</span>
+                <span onClick={() => setModal({ type: 'Terms', content: "By using this site, you agree to professional engagement terms." })} className="hover:text-blue-400 cursor-pointer transition-all hover:tracking-widest">Terms</span>
                 
                 {/* DYNAMIC OS DISPLAY CHIP */}
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/5 border border-blue-500/10 rounded-lg group/os">
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/5 border border-blue-500/10 rounded-lg group/bar">
                   <Monitor size={10} className="text-blue-500/40 group-hover:text-blue-400 transition-colors" />
                   <span className="text-blue-500/40 group-hover:text-blue-400 transition-colors tracking-widest">{os}</span>
                 </div>
                 
-                {/* FLAG WITH ORBITING RING */}
+                {/* SRI LANKA FLAG WITH RING */}
                 <div className="flex items-center pl-4 border-l border-white/10">
                     <div className="relative w-8 h-8 flex items-center justify-center group/flag">
                         <motion.div 
@@ -245,13 +250,9 @@ function Footer() {
                             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                             className="absolute inset-0 rounded-full border border-blue-500/30 opacity-0 group-hover/flag:opacity-100 transition-opacity"
                         />
-                        <motion.span 
-                            animate={{ y: [0, -2, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            className="text-[18px] leading-none drop-shadow-lg cursor-help filter grayscale hover:grayscale-0 transition-all duration-500"
-                        >
+                        <span className="text-[18px] leading-none drop-shadow-lg cursor-help filter grayscale hover:grayscale-0 transition-all duration-500">
                             🇱🇰
-                        </motion.span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -261,11 +262,11 @@ function Footer() {
 
       {/* Info Modals */}
       <AnimatePresence>
-        {modalContent && (
+        {modal && (
           <InfoModal 
-            title={modalContent.includes("data") ? "Privacy" : "Terms"} 
-            content={modalContent} 
-            onClose={() => setModalContent(null)} 
+            title={modal.type} 
+            content={modal.content} 
+            onClose={() => setModal(null)} 
           />
         )}
       </AnimatePresence>
