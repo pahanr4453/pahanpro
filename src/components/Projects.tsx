@@ -70,7 +70,7 @@ const myProjects = [
     tech: ['REACT', 'NODE.JS', 'TAILWIND'],
     link: '#',
     github: '#',
-    image: '/project-srilanka.jpg',
+    image: '/srilanka.png',
     color: 'from-amber-500/20',
     icon: <Palmtree size={23} className="text-amber-400" />,
   },
