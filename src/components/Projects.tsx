@@ -1,217 +1,959 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { ExternalLink, Github, Landmark, ShoppingBag, Palmtree, Bot, Search, MessageCircle, ShoppingCart, X } from 'lucide-react';
+import {
+  ExternalLink,
+  Github,
+  Landmark,
+  ShoppingBag,
+  Palmtree,
+  Camera,
+  ShieldCheck, 
+  Bot,
+  Search,
+  MessageCircle,
+  X,
+} from 'lucide-react';
 
-// --- 1. FEATURED PROJECTS (NO MODAL - ORIGINAL DESIGN) ---
+// ------------------------------------
+// FEATURED PROJECTS
+// ------------------------------------
+
 const myProjects = [
   {
-    title: "FINANCIAL ANALYTICS HUB",
-    description: "SECURE DIGITAL BANKING PLATFORM FOR REAL-TIME TRANSACTION TRACKING AND HIGH-PRECISION FINANCIAL REPORTING.",
-    tech: ["PHP", "MYSQL", "CHART.JS"],
-    link: "https://denipitiyawestsanasa.it.com/",
-    github: "#",
-    color: "from-emerald-500/20",
-    icon: <Landmark size={24} className="text-emerald-400" />
+    title: 'FINANCIAL ANALYTICS HUB',
+    description:
+      'Secure digital banking platform for real-time transaction tracking and high-precision financial reporting.',
+    tech: ['PHP', 'MYSQL', 'CHART.JS'],
+    link: 'https://denipitiyawestsanasa.it.com/',
+    github: '#',
+    image: '/project-finance.jpg',
+    color: 'from-emerald-500/20',
+    icon: <Landmark size={23} className="text-emerald-400" />,
   },
   {
-    title: "SMART E-COMMERCE ENGINE",
-    description: "HIGH-PERFORMANCE MARKETPLACE FEATURING DYNAMIC PRODUCT MANAGEMENT AND SECURE CHECKOUT SYSTEMS.",
-    tech: ["PHP", "CSS", "HTML5","MYSQL"],
-    link: "#",
-    github: "#",
-    color: "from-blue-500/20",
-    icon: <ShoppingBag size={24} className="text-blue-400" />
+    title: 'SMART E-COMMERCE ENGINE',
+    description:
+      'High-performance marketplace featuring dynamic product management and secure checkout systems.',
+    tech: ['PHP', 'CSS', 'HTML5', 'MYSQL'],
+    link: 'https://imaginative-cucurucho-eb61b7.netlify.app/',
+    github: '#',
+    image: '/project-ecommerce.jpg',
+    color: 'from-blue-500/20',
+    icon: <ShoppingBag size={23} className="text-blue-400" />,
+  },
+    {
+    title: 'CINEMATIC PHOTOGRAPHY PORTFOLIO',
+    description:
+      'A premium photography portfolio designed for visual storytelling, elegant galleries, responsive layouts, and a cinematic viewing experience.',
+    tech: ['REACT', 'TAILWIND', 'CMS', 'SEO'],
+    link: 'https://hirusha-two.vercel.app/',
+    github: '#',
+    image: '/project-photography.jpg',
+    color: 'from-pink-500/20',
+    icon: <Camera size={23} className="text-pink-400" />,
   },
   {
-    title: "VISIT SRI LANKA PLATFORM",
-    description: "IMMERSIVE TRAVEL GUIDE SHOWCASING ISLAND DESTINATIONS WITH INTERACTIVE MAPS AND LOCAL BOOKING.",
-    tech: ["REACT", "NODE.JS", "TAILWIND"],
-    link: "https://discover-sri-lanka-alpha.vercel.app/",
-    github: "#",
-    color: "from-amber-500/20",
-    icon: <Palmtree size={24} className="text-amber-400" />
+    title: 'CYBER SECURITY MONITOR',
+    description:
+      'A cyber security focused dashboard concept for monitoring threats, suspicious activity, security events, and system protection status.',
+    tech: ['CYBER SECURITY', 'NETWORKING', 'REACT', 'SECURITY'],
+    link: 'https://cybersc2pa.netlify.app/',
+    github: '#',
+    image: '/project-cyber.jpg',
+    color: 'from-cyan-500/20',
+    icon: <ShieldCheck size={23} className="text-cyan-400" />,
   },
   {
-    title: "PYTHON AUTOMATION BOT",
-    description: "CUSTOM PYTHON SCRIPT FOR AUTOMATING REPETITIVE WEB TASKS AND SOCIAL MEDIA INTERACTIONS EFFICIENTLY.",
-    tech: ["PYTHON", "SELENIUM", "LOGIC"],
-    link: "#",
-    github: "#",
-    color: "from-purple-500/20",
-    icon: <Bot size={24} className="text-purple-400" />
+    title: 'VISIT SRI LANKA PLATFORM',
+    description:
+      'Immersive travel guide showcasing Sri Lankan destinations with a modern and interactive experience.',
+    tech: ['REACT', 'NODE.JS', 'TAILWIND'],
+    link: '#',
+    github: '#',
+    image: '/-srilanka.jpgproject',
+    color: 'from-amber-500/20',
+    icon: <Palmtree size={23} className="text-amber-400" />,
   },
   {
-    title: "DATA SCRAPING ENGINE",
-    description: "ADVANCED PYTHON-BASED TOOL FOR EXTRACTING LARGE-SCALE DATA FROM WEBSITES AND STRUCTURED INSIGHTS.",
-    tech: ["PYTHON", "BEAUTIFULSOUP", "CSV"],
-    link: "#",
-    github: "#",
-    color: "from-red-500/20",
-    icon: <Search size={24} className="text-red-400" />
-  }
+    title: 'PYTHON AUTOMATION BOT',
+    description:
+      'Custom Python automation solution for reducing repetitive web tasks and improving workflow efficiency.',
+    tech: ['PYTHON', 'SELENIUM', 'LOGIC'],
+    link: '#',
+    github: '#',
+    image: '/project-python.jpg',
+    color: 'from-purple-500/20',
+    icon: <Bot size={23} className="text-purple-400" />,
+  },
+  {
+    title: 'DATA SCRAPING ENGINE',
+    description:
+      'Python-based engine for extracting structured web data and transforming it into useful datasets.',
+    tech: ['PYTHON', 'BEAUTIFULSOUP', 'CSV'],
+    link: '#',
+    github: '#',
+    image: '/project-scraping.jpg',
+    color: 'from-red-500/20',
+    icon: <Search size={23} className="text-red-400" />,
+  },
 ];
 
-// --- 2. PREMIUM ASSETS (WITH MODAL & IMAGES) ---
+// ------------------------------------
+// PREMIUM ASSETS
+// ------------------------------------
+
 const saleProjects = [
   {
-    title: "🎓 SMART EDUCATOR PRO (LMS + ADMIN + SEO)",
-    price: "$230.00",
-    image: "/sale1.jpg", 
-    description: "A BEAUTIFULLY CRAFTED ACADEMIC MANAGEMENT SYSTEM. FEATURES A SECURE PHP BACKEND, STUDENT DATABASE, AND AN ELEGANT UI DESIGNED FOR MODERN TEACHERS.",
-    fullDetails: "BRING YOUR TUITION BRAND TO LIFE WITH A SYSTEM THAT COMBINES BEAUTY AND BRAINS. THIS IS A CUSTOM-BUILT PLATFORM DESIGNED SPECIFICALLY FOR EDUCATORS WHO NEED TO MANAGE THEIR CLASSES PROFESSIONALLY. INCLUDES STUDENT REGISTRATION, NOTES MANAGEMENT, AND FULL SEO OPTIMIZATION.",
-    tech: ["PHP", "MYSQL", "LMS", "SEO"]
+    title: 'SMART EDUCATOR PRO',
+    subtitle: 'LMS + ADMIN + SEO',
+    price: '$230.00',
+    image: '/sale1.jpg',
+    description:
+      'A polished academic management system with a secure backend, student database, and professional interface.',
+    fullDetails:
+      'Bring your tuition brand to life with a custom-built platform designed for educators who want to manage classes professionally. Includes student registration, notes management, administrative tools and SEO optimization.',
+    tech: ['PHP', 'MYSQL', 'LMS', 'SEO'],
   },
   {
-    title: "🏆 THE SEO-POWERED PHOTOGRAPHY ENGINE",
-    price: "$90.00",
-    image: "/sale2.jpg",
-    description: "A CINEMATIC PHOTOGRAPHY ECOSYSTEM WITH A POWERFUL CMS. BUILT FOR ELITE VISUAL STORYTELLERS WHO DEMAND GOOGLE RANKING AND TOTAL CONTENT CONTROL.",
-    fullDetails: "THIS IS NOT JUST A PORTFOLIO; IT'S A HIGH-PERFORMANCE BUSINESS ENGINE FOR PHOTOGRAPHERS. FEATURES AN ULTRA-MINIMALIST DESIGN, FAST LOADING TIMES, AND A COMPLETE ADMIN PANEL TO MANAGE YOUR GALLERIES WITHOUT ANY CODING.",
-    tech: ["REACT", "TAILWIND", "CMS", "SEO"]
-  }
+    title: 'SEO-POWERED PHOTOGRAPHY ENGINE',
+    subtitle: 'PORTFOLIO + CMS + SEO',
+    price: '$90.00',
+    image: '/sale2.jpg',
+    description:
+      'A cinematic photography ecosystem with content management, fast performance, and SEO-focused architecture.',
+    fullDetails:
+      'A high-performance business portfolio designed for photographers. Includes modern visuals, fast loading, SEO-focused structure, and a complete admin panel for gallery management.',
+    tech: ['REACT', 'TAILWIND', 'CMS', 'SEO'],
+  },
 ];
 
 export default function Projects() {
   const [selectedAsset, setSelectedAsset] = useState<any>(null);
-  const whatsappNumber = "94761151536";
+  const whatsappNumber = '94761151536';
 
   return (
-    <div className="bg-[#020617] relative overflow-hidden">
-      
-      {/* --- SOFT AURA BACKGROUND (CLEAN & LUXURY) --- */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.15, 0.1] 
+    <div className="relative overflow-hidden bg-[#020617]">
+
+      {/* BACKGROUND */}
+      <div className="pointer-events-none absolute inset-0">
+        <motion.div
+          animate={{
+            scale: [1, 1.12, 1],
+            opacity: [0.07, 0.12, 0.07],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600 blur-[150px] rounded-full"
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="
+            absolute
+            -left-40
+            top-10
+            h-[460px]
+            w-[460px]
+            rounded-full
+            bg-blue-600
+            blur-[160px]
+          "
         />
-        <motion.div 
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.1, 0.05] 
+
+        <motion.div
+          animate={{
+            scale: [1.08, 1, 1.08],
+            opacity: [0.04, 0.08, 0.04],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-600 blur-[180px] rounded-full"
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="
+            absolute
+            -bottom-40
+            -right-40
+            h-[520px]
+            w-[520px]
+            rounded-full
+            bg-indigo-600
+            blur-[180px]
+          "
         />
       </div>
 
-      {/* --- MODAL FOR PREMIUM ASSETS ONLY --- */}
+      {/* =========================================
+          PREMIUM ASSET MODAL
+      ========================================= */}
       <AnimatePresence>
         {selectedAsset && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedAsset(null)} className="absolute inset-0 bg-black/95 backdrop-blur-xl" />
-            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="relative w-full max-w-5xl bg-slate-900 border border-white/10 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row max-h-[90vh]">
-              <button onClick={() => setSelectedAsset(null)} className="absolute top-6 right-6 p-2 bg-white/5 hover:bg-white/10 rounded-full text-white z-20 transition-colors"><X size={24} /></button>
-              <div className="md:w-1/2 h-64 md:h-auto"><img src={selectedAsset.image} alt={selectedAsset.title} className="w-full h-full object-cover" /></div>
-              <div className="md:w-1/2 p-8 md:p-12 overflow-y-auto">
-                <span className="text-blue-500 font-black text-[10px] tracking-[0.3em] uppercase mb-4 inline-block">Asset Details</span>
-                <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">{selectedAsset.title}</h2>
-                <div className="text-2xl font-black text-blue-400 mb-6">{selectedAsset.price}</div>
-                <p className="text-gray-400 text-sm leading-relaxed mb-8 uppercase font-bold tracking-wide">{selectedAsset.fullDetails}</p>
-                <a href={`https://wa.me/${whatsappNumber}?text=Hi Senesh, I want to purchase: ${selectedAsset.title}`} target="_blank" className="flex items-center justify-center gap-3 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black text-[11px] uppercase tracking-widest rounded-2xl transition-all shadow-[0_10px_30px_rgba(37,99,235,0.3)]">BUY VIA WHATSAPP <MessageCircle size={20} /></a>
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedAsset(null)}
+              className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+            />
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.96,
+                y: 15,
+              }}
+              transition={{ duration: 0.3 }}
+              className="
+                relative
+                z-10
+                flex
+                max-h-[90vh]
+                w-full
+                max-w-5xl
+                flex-col
+                overflow-hidden
+                rounded-[2rem]
+                border
+                border-white/10
+                bg-[#050a18]
+                shadow-2xl
+                md:flex-row
+              "
+            >
+              <button
+                onClick={() => setSelectedAsset(null)}
+                className="
+                  absolute
+                  right-5
+                  top-5
+                  z-30
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-black/50
+                  text-white
+                  backdrop-blur-xl
+                  transition-all
+                  hover:bg-white/10
+                "
+              >
+                <X size={19} />
+              </button>
+
+              <div className="h-64 md:h-auto md:w-1/2">
+                <img
+                  src={selectedAsset.image}
+                  alt={selectedAsset.title}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+
+              <div className="overflow-y-auto p-7 md:w-1/2 md:p-12">
+                <span className="mb-4 inline-block text-[9px] font-black uppercase tracking-[0.35em] text-blue-400">
+                  Premium Asset
+                </span>
+
+                <h2 className="mb-2 text-3xl font-black tracking-tight text-white md:text-4xl">
+                  {selectedAsset.title}
+                </h2>
+
+                <p className="mb-5 text-[9px] font-black uppercase tracking-[0.22em] text-slate-500">
+                  {selectedAsset.subtitle}
+                </p>
+
+                <div className="mb-6 text-3xl font-black text-blue-400">
+                  {selectedAsset.price}
+                </div>
+
+                <p className="mb-7 text-sm leading-7 text-slate-400">
+                  {selectedAsset.fullDetails}
+                </p>
+
+                <div className="mb-8 flex flex-wrap gap-2">
+                  {selectedAsset.tech.map((tech: string) => (
+                    <span
+                      key={tech}
+                      className="
+                        rounded-md
+                        border
+                        border-blue-500/15
+                        bg-blue-500/[0.07]
+                        px-3
+                        py-1.5
+                        text-[8px]
+                        font-black
+                        uppercase
+                        tracking-widest
+                        text-blue-400
+                      "
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                    `Hi Senesh, I want to purchase: ${selectedAsset.title}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    flex
+                    items-center
+                    justify-center
+                    gap-3
+                    rounded-xl
+                    bg-blue-600
+                    py-4
+                    text-[10px]
+                    font-black
+                    uppercase
+                    tracking-[0.18em]
+                    text-white
+                    transition-all
+                    hover:bg-blue-500
+                  "
+                >
+                  BUY VIA WHATSAPP
+                  <MessageCircle size={18} />
+                </a>
               </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
 
-      {/* --- SECTION 1: FEATURED PROJECTS --- */}
-      <section id="portfolio" className="py-24 px-6 relative">
-        <div className="container mx-auto max-w-7xl relative">
-          <div className="flex flex-col mb-16 border-l-2 border-blue-600/50 pl-6">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true, margin: "-100px" }} 
-              transition={{ duration: 0.8 }}
+      {/* =========================================
+          FEATURED PROJECTS
+      ========================================= */}
+      <section
+        id="portfolio"
+        className="relative px-5 py-24 sm:px-6 md:px-8 lg:px-10 lg:py-28"
+      >
+        <div className="relative z-10 mx-auto max-w-7xl">
+
+          {/* HEADER */}
+          <div className="mb-14 border-l-2 border-blue-600/50 pl-5 sm:pl-6 md:mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white uppercase">FEATURED <span className="text-blue-500 italic">PROJECTS</span></h2>
-              <p className="text-gray-500 mt-3 text-[9px] font-bold uppercase tracking-[0.5em] opacity-70">Building Digital Excellence</p>
+              <p className="mb-3 text-[9px] font-black uppercase tracking-[0.42em] text-blue-400">
+                Selected Work
+              </p>
+
+              <h2 className="text-3xl font-black uppercase tracking-tight text-white sm:text-4xl md:text-5xl">
+                FEATURED{' '}
+                <span className="italic text-blue-500">
+                  PROJECTS
+                </span>
+              </h2>
+
+              <p className="mt-3 max-w-xl text-[10px] font-semibold uppercase leading-6 tracking-[0.22em] text-slate-500">
+                Building digital experiences with performance, clarity and modern design.
+              </p>
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {myProjects.map((project, index) => (
-              <motion.div 
-                key={index} 
-                initial={{ opacity: 0, y: 60 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true, margin: "-50px" }} 
-                transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
-                whileHover={{ y: -10 }} 
-                className="group relative"
-              >
-                <div className="relative h-full p-10 rounded-[2.5rem] bg-slate-900/40 border border-white/5 backdrop-blur-xl group-hover:border-blue-500/50 transition-all duration-500 flex flex-col">
-                  <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${project.color} blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-                  <div className="mb-10 p-5 w-fit rounded-2xl bg-white/5 border border-white/10 group-hover:bg-blue-500/10 transition-all">{project.icon}</div>
-                  <h3 className="text-2xl font-black text-white mb-4 group-hover:text-blue-400 transition-colors uppercase tracking-tight">{project.title}</h3>
-                  <p className="text-gray-400 text-[11px] leading-relaxed mb-8 font-bold uppercase tracking-wider">{project.description}</p>
-                  <div className="mt-auto">
-                    <div className="flex flex-wrap gap-2 mb-10">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="text-[9px] font-black px-3 py-1.5 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-widest">{t}</span>
-                      ))}
+          {/* PROJECT GRID */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {myProjects.map((project, index) => {
+              const hasGithub =
+                project.github && project.github !== '#';
+
+              const hasLive =
+                project.link && project.link !== '#';
+
+              return (
+                <motion.article
+                  key={project.title}
+                  initial={{
+                    opacity: 0,
+                    y: 40,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                    margin: '-50px',
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.07,
+                  }}
+                  whileHover={{
+                    y: -6,
+                  }}
+                  className="group relative"
+                >
+                  <div
+                    className="
+                      relative
+                      flex
+                      h-full
+                      min-h-[470px]
+                      flex-col
+                      overflow-hidden
+                      rounded-[2rem]
+                      border
+                      border-white/5
+                      bg-slate-900/35
+                      backdrop-blur-xl
+                      transition-all
+                      duration-500
+                      group-hover:border-blue-500/30
+                      group-hover:bg-slate-900/50
+                    "
+                  >
+                    {/* PHOTO */}
+                    <div className="relative h-52 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="
+                          h-full
+                          w-full
+                          object-cover
+                          transition-transform
+                          duration-700
+                          ease-out
+                          group-hover:scale-[1.05]
+                        "
+                      />
+
+                      {/* image dark overlay */}
+                      <div
+                        className="
+                          absolute
+                          inset-0
+                          bg-gradient-to-t
+                          from-[#020617]
+                          via-[#020617]/20
+                          to-transparent
+                        "
+                      />
+
+                      {/* project colored glow */}
+                      <div
+                        className={`
+                          absolute
+                          inset-0
+                          bg-gradient-to-br
+                          ${project.color}
+                          to-transparent
+                          opacity-25
+                        `}
+                      />
+
+                      {/* NUMBER */}
+                      <span
+                        className="
+                          absolute
+                          right-4
+                          top-4
+                          rounded-full
+                          border
+                          border-white/10
+                          bg-black/35
+                          px-3
+                          py-1.5
+                          text-[8px]
+                          font-black
+                          tracking-wider
+                          text-white/70
+                          backdrop-blur-xl
+                        "
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+
+                      {/* ICON ON PHOTO */}
+                      <motion.div
+                        whileHover={{
+                          scale: 1.06,
+                        }}
+                        className="
+                          absolute
+                          bottom-4
+                          left-4
+                          flex
+                          h-13
+                          w-13
+                          h-[52px]
+                          w-[52px]
+                          items-center
+                          justify-center
+                          rounded-2xl
+                          border
+                          border-white/10
+                          bg-black/45
+                          shadow-xl
+                          backdrop-blur-xl
+                        "
+                      >
+                        {project.icon}
+                      </motion.div>
+
+                      {/* STATUS */}
+                      <div
+                        className={`
+                          absolute
+                          bottom-4
+                          right-4
+                          rounded-full
+                          border
+                          px-3
+                          py-1.5
+                          text-[7px]
+                          font-black
+                          uppercase
+                          tracking-[0.16em]
+                          backdrop-blur-xl
+                          ${
+                            hasLive
+                              ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-400'
+                              : 'border-white/10 bg-black/35 text-slate-500'
+                          }
+                        `}
+                      >
+                        {hasLive ? 'Live' : 'Coming Soon'}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <a href={project.github} className="p-4 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all"><Github size={20} /></a>
-                      <a href={project.link} className="flex-1 flex items-center justify-center gap-3 py-4 rounded-xl bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/20">EXPLORE <ExternalLink size={16} /></a>
+
+                    {/* CARD CONTENT */}
+                    <div
+                      className="
+                        relative
+                        z-10
+                        flex
+                        flex-1
+                        flex-col
+                        p-7
+                        sm:p-8
+                      "
+                    >
+                      <h3
+                        className="
+                          mb-4
+                          text-xl
+                          font-black
+                          uppercase
+                          tracking-tight
+                          text-white
+                          transition-colors
+                          duration-300
+                          group-hover:text-blue-400
+                          md:text-2xl
+                        "
+                      >
+                        {project.title}
+                      </h3>
+
+                      <p
+                        className="
+                          mb-7
+                          text-sm
+                          leading-6
+                          text-slate-500
+                        "
+                      >
+                        {project.description}
+                      </p>
+
+                      {/* TECH */}
+                      <div className="mb-8 flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="
+                              rounded-md
+                              border
+                              border-blue-500/15
+                              bg-blue-500/[0.07]
+                              px-2.5
+                              py-1.5
+                              text-[8px]
+                              font-black
+                              uppercase
+                              tracking-widest
+                              text-blue-400
+                            "
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* ACTIONS */}
+                      <div className="mt-auto flex items-center gap-3">
+
+                        {hasGithub && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
+                              flex
+                              h-12
+                              w-12
+                              items-center
+                              justify-center
+                              rounded-xl
+                              border
+                              border-white/10
+                              bg-white/5
+                              text-gray-400
+                              transition-all
+                              hover:border-blue-500/30
+                              hover:text-white
+                            "
+                          >
+                            <Github size={19} />
+                          </a>
+                        )}
+
+                        {hasLive ? (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
+                              group/btn
+                              flex
+                              h-12
+                              flex-1
+                              items-center
+                              justify-center
+                              gap-2
+                              rounded-xl
+                              bg-blue-600
+                              text-[9px]
+                              font-black
+                              uppercase
+                              tracking-[0.17em]
+                              text-white
+                              transition-all
+                              hover:bg-blue-500
+                            "
+                          >
+                            VIEW PROJECT
+
+                            <ExternalLink
+                              size={15}
+                              className="
+                                transition-transform
+                                duration-300
+                                group-hover/btn:translate-x-0.5
+                              "
+                            />
+                          </a>
+                        ) : (
+                          <div
+                            className="
+                              flex
+                              h-12
+                              flex-1
+                              items-center
+                              justify-center
+                              rounded-xl
+                              border
+                              border-white/[0.05]
+                              bg-white/[0.015]
+                            "
+                          >
+                            <span
+                              className="
+                                text-[8px]
+                                font-black
+                                uppercase
+                                tracking-[0.18em]
+                                text-slate-600
+                              "
+                            >
+                              IN DEVELOPMENT
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* --- SECTION 2: PREMIUM ASSETS --- */}
-      <section className="py-32 px-6 bg-[#010413] border-t border-white/5 relative">
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="flex flex-col items-center mb-20 text-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.8 }}
+      {/* =========================================
+          PREMIUM ASSETS
+      ========================================= */}
+      <section
+        className="
+          relative
+          border-t
+          border-white/5
+          bg-[#010413]
+          px-5
+          py-24
+          sm:px-6
+          md:px-8
+          lg:px-10
+          lg:py-28
+        "
+      >
+        <div className="relative z-10 mx-auto max-w-7xl">
+
+          {/* HEADER */}
+          <div className="mb-14 text-center md:mb-16">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
             >
-              <span className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black tracking-[0.4em] uppercase mb-4 inline-block">Exclusive Market</span>
-              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4">PREMIUM <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 italic">ASSETS</span></h2>
-              <p className="text-gray-400 text-[11px] font-bold uppercase tracking-[0.4em]">Available for Purchase</p>
+              <span
+                className="
+                  mb-4
+                  inline-block
+                  rounded-full
+                  border
+                  border-blue-500/20
+                  bg-blue-500/10
+                  px-4
+                  py-1.5
+                  text-[9px]
+                  font-black
+                  uppercase
+                  tracking-[0.35em]
+                  text-blue-400
+                "
+              >
+                Exclusive Market
+              </span>
+
+              <h2
+                className="
+                  mb-4
+                  text-4xl
+                  font-black
+                  uppercase
+                  tracking-tighter
+                  text-white
+                  md:text-6xl
+                "
+              >
+                PREMIUM{' '}
+                <span
+                  className="
+                    bg-gradient-to-r
+                    from-blue-500
+                    to-cyan-400
+                    bg-clip-text
+                    italic
+                    text-transparent
+                  "
+                >
+                  ASSETS
+                </span>
+              </h2>
+
+              <p
+                className="
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.32em]
+                  text-gray-500
+                "
+              >
+                Available for Purchase
+              </p>
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* CARDS */}
+          <div className="mx-auto grid max-w-5xl gap-7 md:grid-cols-2">
             {saleProjects.map((item, index) => (
-              <motion.div 
-                key={index} 
-                initial={{ opacity: 0, scale: 0.95, y: 40 }} 
-                whileInView={{ opacity: 1, scale: 1, y: 0 }} 
-                viewport={{ once: true }} 
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                whileHover={{ y: -15 }} 
-                onClick={() => setSelectedAsset(item)} 
-                className="group cursor-pointer relative"
+              <motion.article
+                key={item.title}
+                initial={{
+                  opacity: 0,
+                  scale: 0.97,
+                  y: 30,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                }}
+                whileHover={{
+                  y: -6,
+                }}
+                onClick={() => setSelectedAsset(item)}
+                className="group cursor-pointer"
               >
-                <div className="relative h-full bg-slate-900/40 border border-white/5 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden group-hover:border-blue-500/30 transition-all duration-500">
-                  <div className="h-64 relative overflow-hidden">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute top-6 right-6 px-5 py-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl text-blue-400 font-black text-sm">{item.price}</div>
+                <div
+                  className="
+                    h-full
+                    overflow-hidden
+                    rounded-[2rem]
+                    border
+                    border-white/5
+                    bg-slate-900/35
+                    backdrop-blur-2xl
+                    transition-all
+                    duration-500
+                    group-hover:border-blue-500/25
+                    group-hover:bg-slate-900/45
+                  "
+                >
+                  {/* IMAGE */}
+                  <div className="relative h-56 overflow-hidden sm:h-64">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition-transform
+                        duration-700
+                        group-hover:scale-[1.04]
+                      "
+                    />
+
+                    <div
+                      className="
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-[#020617]/85
+                        via-transparent
+                        to-transparent
+                      "
+                    />
+
+                    <div
+                      className="
+                        absolute
+                        right-5
+                        top-5
+                        rounded-xl
+                        border
+                        border-white/10
+                        bg-black/50
+                        px-4
+                        py-2
+                        text-sm
+                        font-black
+                        text-blue-400
+                        backdrop-blur-md
+                      "
+                    >
+                      {item.price}
+                    </div>
                   </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter group-hover:text-blue-400 transition-colors">{item.title}</h3>
-                    <p className="text-gray-400 text-[11px] font-bold uppercase leading-relaxed mb-8 opacity-70 line-clamp-2">{item.description}</p>
-                    <div className="py-4 bg-blue-600 rounded-2xl text-white font-black text-[11px] text-center uppercase tracking-[0.2em] shadow-lg shadow-blue-900/40">VIEW DETAILS</div>
+
+                  {/* CONTENT */}
+                  <div className="p-7 sm:p-8">
+                    <span
+                      className="
+                        mb-3
+                        block
+                        text-[8px]
+                        font-black
+                        uppercase
+                        tracking-[0.22em]
+                        text-blue-400
+                      "
+                    >
+                      {item.subtitle}
+                    </span>
+
+                    <h3
+                      className="
+                        mb-4
+                        text-xl
+                        font-black
+                        uppercase
+                        tracking-tighter
+                        text-white
+                        transition-colors
+                        group-hover:text-blue-400
+                        md:text-2xl
+                      "
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mb-7
+                        text-sm
+                        leading-6
+                        text-slate-500
+                      "
+                    >
+                      {item.description}
+                    </p>
+
+                    <div
+                      className="
+                        flex
+                        h-12
+                        items-center
+                        justify-center
+                        rounded-xl
+                        bg-blue-600
+                        text-[9px]
+                        font-black
+                        uppercase
+                        tracking-[0.18em]
+                        text-white
+                        transition-all
+                        group-hover:bg-blue-500
+                      "
+                    >
+                      VIEW DETAILS
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
-
     </div>
   );
 }
